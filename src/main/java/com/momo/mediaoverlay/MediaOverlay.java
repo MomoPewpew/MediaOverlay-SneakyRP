@@ -73,14 +73,26 @@ public class MediaOverlay implements IDisplayHandler, IJSQueryHandler {
     {
     	LogWriter.info("Loading");
     	Channel = NetworkRegistry.INSTANCE.newEventDrivenChannel("MediaOverlay");
-        this.onPreInit();
+
+        //Grab the API and make sure it isn't null.
+        api = MCEFApi.getAPI();
+        if(api == null)
+            return;
+
+        api.registerScheme("mod", ModScheme.class, true, false, false, true, true, false, false);
+
         proxy.preInit(event);
     }
 
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
-    	this.onInit();
+        INSTANCE = this;
+
+        //Register key binding and listen to the FML event bus for ticks.
+        ClientRegistry.registerKeyBinding(key);
+        MinecraftForge.EVENT_BUS.register(this);
+
     	proxy.init(event);
     }
 
@@ -92,23 +104,6 @@ public class MediaOverlay implements IDisplayHandler, IJSQueryHandler {
             api.registerJSQueryHandler(this);
         }
         proxy.postInit(event);
-    }
-
-    public void onPreInit() {
-        //Grab the API and make sure it isn't null.
-        api = MCEFApi.getAPI();
-        if(api == null)
-            return;
-
-        api.registerScheme("mod", ModScheme.class, true, false, false, true, true, false, false);
-    }
-
-    public void onInit() {
-        INSTANCE = this;
-
-        //Register key binding and listen to the FML event bus for ticks.
-        ClientRegistry.registerKeyBinding(key);
-        MinecraftForge.EVENT_BUS.register(this);
     }
 
     @EventHandler
