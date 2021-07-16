@@ -27,6 +27,7 @@ public class MediaOverlay
     public void preInit(FMLPreInitializationEvent event)
     {
         logger = event.getModLog();
+    	LogWriter.info("Loading");
         proxy.preInit(event);
     }
 
