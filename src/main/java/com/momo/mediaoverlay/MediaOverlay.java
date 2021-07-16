@@ -5,8 +5,10 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.network.FMLEventChannel;
 
-import org.apache.logging.log4j.Logger;
+import com.momo.mediaoverlay.commands.CommandP;
 
 @Mod(modid = MediaOverlay.MODID, name = MediaOverlay.NAME, version = MediaOverlay.VERSION)
 public class MediaOverlay
@@ -21,12 +23,11 @@ public class MediaOverlay
        )
     public static CommonProxy proxy;
 
-    private static Logger logger;
+    public static FMLEventChannel Channel;
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
-        logger = event.getModLog();
     	LogWriter.info("Loading");
         proxy.preInit(event);
     }
