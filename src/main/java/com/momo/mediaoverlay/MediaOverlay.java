@@ -35,4 +35,9 @@ public class MediaOverlay
     {
     	proxy.init(event);;
     }
+
+    @EventHandler
+    public void serverstart(FMLServerStartingEvent event) {
+         event.registerServerCommand(new CommandP());
+    }
 }
