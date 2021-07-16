@@ -24,6 +24,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -83,6 +84,16 @@ public class MediaOverlay implements IDisplayHandler, IJSQueryHandler {
     	proxy.init(event);
     }
 
+    @EventHandler
+    public void postInit(FMLPostInitializationEvent event) {
+        if(api != null) {
+            //Register this class to handle onAddressChange and onQuery events
+            api.registerDisplayHandler(this);
+            api.registerJSQueryHandler(this);
+        }
+        proxy.postInit(event);
+    }
+
     public void onPreInit() {
         //Grab the API and make sure it isn't null.
         api = MCEFApi.getAPI();
@@ -98,12 +109,6 @@ public class MediaOverlay implements IDisplayHandler, IJSQueryHandler {
         //Register key binding and listen to the FML event bus for ticks.
         ClientRegistry.registerKeyBinding(key);
         MinecraftForge.EVENT_BUS.register(this);
-
-        if(api != null) {
-            //Register this class to handle onAddressChange and onQuery events
-/*            api.registerDisplayHandler(this);
-            api.registerJSQueryHandler(this);*/
-        }
     }
 
     @EventHandler
