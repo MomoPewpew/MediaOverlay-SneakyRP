@@ -15,8 +15,8 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
 version = '1.0'
-group = 'com.yourname.modid' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'modid'
+group = 'com.momo.mediaoverlay' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = 'MediaOverlay'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 
@@ -80,6 +80,13 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
+	compile 'net.montoyo.mcef:mcef:6.0.8'
+}
+
+repositories {
+  flatDir {
+    dirs "libs"
+  }
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
