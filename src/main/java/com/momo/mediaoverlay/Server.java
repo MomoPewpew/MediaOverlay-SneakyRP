@@ -43,7 +43,7 @@ public class Server {
 
                        while(var4.hasNext()) {
                             EntityPlayerMP player = (EntityPlayerMP)var4.next();
-                            MediaOverlay.Channel.sendTo(new FMLProxyPacket(new PacketBuffer(buffer.copy()), "MorePlayerModels"), player);
+                            MediaOverlay.Channel.sendTo(new FMLProxyPacket(new PacketBuffer(buffer.copy()), "MediaOverlay"), player);
                        }
                   } catch (IOException var6) {
                        LogWriter.except(var6);

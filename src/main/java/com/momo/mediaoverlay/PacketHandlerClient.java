@@ -6,6 +6,8 @@ import com.momo.mediaoverlay.constants.EnumPackets;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent.ClientCustomPacketEvent;
 
@@ -28,8 +30,11 @@ public class PacketHandlerClient {
      }
 
      private void handlePacket(ByteBuf buffer, EntityPlayer player, EnumPackets type) throws Exception {
-           EntityPlayer pl;
+           EntityPlayer pl = null;
            if (type == EnumPackets.PICTURE_PLAY) {
+        	   NBTTagCompound compound = Server.readNBT(buffer);
+        	   String url = compound.getString("url");
+
 
            }
      }
