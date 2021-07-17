@@ -209,4 +209,8 @@ public class MediaOverlay implements IDisplayHandler, IJSQueryHandler {
             hudBrowser.drawScreen(0, 0, 0.f);
     }
 
+	public BrowserScreen getBackup() {
+		return backup;
+	}
+
 }

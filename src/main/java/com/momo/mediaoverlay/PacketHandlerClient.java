@@ -2,12 +2,12 @@ package com.momo.mediaoverlay;
 
 import io.netty.buffer.ByteBuf;
 
+import com.momo.mediaoverlay.client.gui.BrowserScreen;
 import com.momo.mediaoverlay.constants.EnumPackets;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent.ClientCustomPacketEvent;
 
@@ -35,7 +35,14 @@ public class PacketHandlerClient {
         	   NBTTagCompound compound = Server.readNBT(buffer);
         	   String url = compound.getString("url");
 
+        	   Minecraft mc = Minecraft.getMinecraft();
 
+	           //Display the web browser UI.
+        	   BrowserScreen browserScreen = MediaOverlay.INSTANCE.hasBackup() ? MediaOverlay.INSTANCE.getBackup() : new BrowserScreen();
+	           mc.displayGuiScreen(browserScreen);
+	           MediaOverlay.INSTANCE.setBackup(null);
+
+	           browserScreen.onUrlChanged(MediaOverlay.INSTANCE.getBrowser(), url);
            }
      }
 }

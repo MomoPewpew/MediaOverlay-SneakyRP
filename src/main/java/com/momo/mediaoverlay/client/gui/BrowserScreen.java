@@ -1,9 +1,6 @@
 package com.momo.mediaoverlay.client.gui;
 import net.minecraft.client.renderer.GlStateManager;
 import net.montoyo.mcef.MCEF;
-import net.montoyo.mcef.utilities.Log;
-import org.lwjgl.opengl.GL11;
-
 import com.momo.mediaoverlay.MediaOverlay;
 
 import org.lwjgl.input.Keyboard;
@@ -15,10 +12,6 @@ import net.minecraft.client.gui.GuiTextField;
 import net.montoyo.mcef.api.API;
 import net.montoyo.mcef.api.IBrowser;
 import net.montoyo.mcef.api.MCEFApi;
-
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
-import java.util.HashMap;
 
 public class BrowserScreen extends GuiScreen {
 
