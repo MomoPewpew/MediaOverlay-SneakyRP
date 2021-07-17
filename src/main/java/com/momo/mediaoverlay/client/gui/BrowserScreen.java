@@ -47,7 +47,7 @@ public class BrowserScreen extends GuiScreen {
                 return;
 
             //Create a browser and resize it to fit the screen
-            browser = api.createBrowser((urlToLoad == null) ? MCEF.HOME_PAGE : urlToLoad, false);
+            browser = api.createBrowser((urlToLoad == null) ? MCEF.HOME_PAGE : urlToLoad, true);
             urlToLoad = null;
         }
 
