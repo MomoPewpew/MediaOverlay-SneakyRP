@@ -38,11 +38,11 @@ public class PacketHandlerClient {
         	   Minecraft mc = Minecraft.getMinecraft();
 
 	           //Display the web browser UI.
-        	   BrowserScreen browserScreen = MediaOverlay.INSTANCE.hasBackup() ? MediaOverlay.INSTANCE.getBackup() : new BrowserScreen();
+        	   BrowserScreen browserScreen = MediaOverlay.INSTANCE.hasBackup() ? MediaOverlay.INSTANCE.getBackup() : new BrowserScreen(url);
 	           mc.displayGuiScreen(browserScreen);
 	           MediaOverlay.INSTANCE.setBackup(null);
 
-	           browserScreen.onUrlChanged(MediaOverlay.INSTANCE.getBrowser(), url);
+	           //browserScreen.onUrlChanged(MediaOverlay.INSTANCE.getBrowser(), url);
            }
      }
 }
